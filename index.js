@@ -152,7 +152,14 @@ function searchMovies(e) {
 
     }
     else {
-        fetch(`${url}search/movie?api_key=${apiKey}&query=${e.target.value}`)
+        const apiUrl = `https://api.themoviedb.org/3/search/movie?query=${e.target.value}&api_key=2ad18877c2ecce5382256b80fefda964`;
+        const options = {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYWQxODg3N2MyZWNjZTUzODIyNTZiODBmZWZkYTk2NCIsInN1YiI6IjY1YjIzMjY1NmVlY2VlMDBjOTMzZjA2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.L1aSTQjDzIQ1BAH2OCc2A0kqegYT53YPtUNQHT2FD40`,
+            },
+        };
+        fetch(apiUrl, options)
             .then(res => res.json())
             .then(data => {
                 movieData.push(data.results)
